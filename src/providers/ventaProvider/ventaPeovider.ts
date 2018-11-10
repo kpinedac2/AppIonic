@@ -18,7 +18,7 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class VentaProvider {
   venta2: Venta = null;
-  url = 'http://localhost:5000';
+  url = 'http://gamercash.info:8081';
 
   constructor(public http: HttpClient, public storage: Storage) {
     console.log('Hello VentaProvider Provider');
@@ -27,7 +27,7 @@ export class VentaProvider {
   vender(venta: Venta)  : Observable<any> {
     return this.http.post(this.url+'/usuarios/'+venta.usuario_id+
     '/clientes/'+venta.cliente_id+'/ventatipos/'+venta.venta_tipo_id+'/ventas', venta);
-    this.storage.set('idCliente', venta.cliente_id);
+   
   }
 
   venderDetalle(venta: VentaDetalle)  : Observable<any> {

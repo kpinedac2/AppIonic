@@ -34,9 +34,9 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #3880ff,
+  tertiary:    #3880ff,
   secondary:  #0cd1e8,
-  tertiary:   #7044ff,
+  primary:   #704de4,
   succes:     #10dc60,
   warning:    #ffce00,
   danger:     #f04141,
@@ -74,7 +74,7 @@ $colors: (
 // so that the above variables are used and Ionic's
 // default are overridden.
 
-@import "ionic.theme.dark";
+@import "ionic.theme.default";
 
 
 // Ionicons

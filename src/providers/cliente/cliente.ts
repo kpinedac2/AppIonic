@@ -15,7 +15,7 @@ import { CreditoComprobar } from '../../models/credito.modelo';
 @Injectable()
 export class ClienteProvider {
 
-  apiUrl = 'http://localhost:5000';
+  apiUrl = 'http://gamercash.info:8081';
   
   constructor(public http: HttpClient) {
     console.log('Hello ClienteProvider Provider');

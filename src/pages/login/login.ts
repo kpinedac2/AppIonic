@@ -17,7 +17,7 @@ import { Storage } from '@ionic/storage';
 })
 export class LoginPage {
 
-  images = ['bimbo.png'];
+  images = ['electronic.jpg'];
 
   sesion: Array<Sesion> = [];
   usuarios: Array<Usuario> = [];

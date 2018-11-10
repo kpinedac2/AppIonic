@@ -6,20 +6,20 @@
 -->
 <ion-header>
 
-  <ion-navbar color="secondary">
-    <ion-title>Solicitudes</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>SOLICITUDES</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <button ion-button color="primary" full (click)="crearSolicitud()"> Crear solicitud </button>
-  <button ion-button color="succes" clear full>Solicitudes hechas</button>
+  <button ion-button color="primary" full (click)="crearSolicitud()"> Nueva Solicitud</button>
+  <button ion-button color="primary"  full>Lista de Solicitudes</button>
 
   <ion-card *ngFor="let s of solicitudes; let i = index">
     <ion-card-header>
-      <h2><i> <b>Detalles de la solicitud</b></i></h2>
+      <h2><i> <b>SOLICITUDES</b></i></h2>
     </ion-card-header>
     <ion-card-content>
       <label for=""><b>Solicitud: </b> {{s.tipoSolicitudId.solicitudTipo}}</label> <br>

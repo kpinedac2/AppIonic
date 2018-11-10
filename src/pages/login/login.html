@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar color="danger">
-    <ion-title>Iniciar sesión</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>LOGIN ELECTRONIC</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,8 +16,15 @@
 <ion-content>
   <ion-list>
     <form [formGroup]="formSesion">
+
+        <ion-slides class="image-slider">
+            <ion-slide *ngFor="let img of images">
+              <img src="assets/imgs/{{img}}" class="thumb-img" imageViewer/>
+            </ion-slide>
+          </ion-slides>
+
       <ion-item>
-        <ion-label floating>Usuario</ion-label>
+        <ion-label floating>USERNAME</ion-label>
         <ion-select value="" formControlName="usuario_id"  [(ngModel)]="idUser">
           <ion-option *ngFor="let u of usuarios" value="{{u.id}}">
             {{u.usuarioNombre}}
@@ -26,22 +33,18 @@
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Contraseña</ion-label>
+        <ion-label floating>PASSWORD</ion-label>
         <ion-input type="password" formControlName="clave" value="" [(ngModel)]="passUser"></ion-input>
       </ion-item>
 
       <ion-item>
-        <button (click)="guardarUsuario()" ion-button block>Ingresar</button>
-        <button (click)="devuelveUsuario()" ion-button block>Cargar</button>
+        <button (click)="guardarUsuario()" ion-button block>ACCEDER</button>
+  
       </ion-item>
     </form>
   </ion-list>
 
-  <ion-slides class="image-slider">
-    <ion-slide *ngFor="let img of images">
-      <img src="assets/imgs/{{img}}" class="thumb-img" imageViewer/>
-    </ion-slide>
-  </ion-slides>
+  
 
 
 </ion-content>

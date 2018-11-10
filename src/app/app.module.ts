@@ -58,7 +58,10 @@ import { Geolocation } from '@ionic-native/geolocation';
     HttpClientModule,
     ReactiveFormsModule,
     NgxDatatableModule,
-    IonicStorageModule.forRoot(),
+    IonicStorageModule.forRoot({
+      name: '__mydb',
+         driverOrder: ['indexeddb', 'sqlite', 'websql']
+    }),
     IonicImageViewerModule
   ],
   bootstrap: [IonicApp],

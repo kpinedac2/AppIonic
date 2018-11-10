@@ -12,7 +12,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class ProductoProvider {
 
-  url = "http://localhost:5000";
+  url = "http://gamercash.info:8081";
 
   constructor(public http: HttpClient) {
 
