@@ -36,6 +36,7 @@ export class VentasPage {
   public idCliente = null;
   public tipoVenta = null;
   public creditoExiste: boolean = false;
+  public tipoParaCredito = null;
 
   public usarioId: number;
 
@@ -57,6 +58,7 @@ export class VentasPage {
 
   ) {
 
+    this.storage.remove('id_cliente_credito');
     this.initializeItems();
 
     this.formulario = this.fb.group({
@@ -91,7 +93,8 @@ export class VentasPage {
     this.ventaHecha = this.formulario.value;
 
     this.idCliente = this.ventaHecha.cliente_id;
-
+    this.tipoParaCredito = this.ventaHecha.venta_tipo_id;
+    this.storage.set('id_cliente_credito', this.idCliente);
 
 
     this.ventaProvider.vender(this.formulario.value).subscribe(data => {
@@ -100,13 +103,16 @@ export class VentasPage {
 
       this.storage.get('id_venta').then((val) => {
 
-          this.creditoNuevoVacio = 
-          '{\"clientel_id:\"' +this.ventaHecha.cliente_id +'\"venta_id: \"' + this.ventaHecha.id + '\"' +'}'
-          console.log(this.creditoNuevoVacio);
+        this.creditoNuevoVacio =
+          '{"clientel_id": "' + this.idCliente + '", "venta_id": "' + this.ventaHecha.id + '"' + '}'
 
-
-        this.comprobarCredito(this.idCliente);
-        this.navCtrl.setRoot(VentaDetallePage, {idVenta: val});
+        if(this.tipoParaCredito == "1"){
+          this.comprobarCredito(this.idCliente, this.creditoNuevoVacio, this.ventaHecha.id);
+        }else{
+          console.log('compra contado');
+        }
+        
+        this.navCtrl.setRoot(VentaDetallePage, { idVenta: val });
 
       });
 
@@ -150,17 +156,23 @@ export class VentasPage {
     });
   }
 
-  comprobarCredito(id) {
+  comprobarCredito(id, credito, idV) {
     this.clienteProvider.comprobarCredito(id).subscribe(data => {
       this.creditos = data;
+      console.log('comprobar si existe credito '+this.creditos)
       var tamanio = this.creditos.length;
-      console.log(tamanio);
+      console.log('tamaño del arreglo credutis'+tamanio);
       if (tamanio > 0) {
         console.log('actualizar crédito')
       } else {
 
+        console.log('crear crédito con ' + credito)
+        this.ventaProvider.nuevoCredito(credito, id, idV).subscribe(data => {
+          console.log(data);
+        }, error => {
+          console.log(error);
+        });
 
-        console.log('crear crédito')
       }
     }, error => {
       console.log(error);

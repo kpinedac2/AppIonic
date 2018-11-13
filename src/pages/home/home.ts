@@ -66,7 +66,7 @@ export class HomePage {
 
 
   ionViewDidLoad() {
-    this.plt.ready().then(() => {
+   /*  this.plt.ready().then(() => {
       this.loadHistoricRoutes();
  
       let mapOptions = {
@@ -85,21 +85,21 @@ export class HomePage {
       }).catch((error) => {
         console.log('Error getting location', error);
       });
-    });
+    }); */
   }
  
   loadHistoricRoutes() {
-    this.storage.get('routes').then(data => {
+    /* this.storage.get('routes').then(data => {
       if (data) {
         this.previousTracks = data;
       }
-    });
+    }); */
   }
 
 
   
   startTracking() {
-    this.isTracking = true;
+   /*  this.isTracking = true;
     this.trackedRoute = [];
  
     this.positionSubscription = this.geolocation.watchPosition()
@@ -111,12 +111,12 @@ export class HomePage {
           this.trackedRoute.push({ lat: data.coords.latitude, lng: data.coords.longitude });
           this.redrawPath(this.trackedRoute);
         }, 0);
-      });
+      }); */
  
   }
  
   redrawPath(path) {
-    if (this.currentMapTrack) {
+ /*    if (this.currentMapTrack) {
       this.currentMapTrack.setMap(null);
     }
  
@@ -129,21 +129,21 @@ export class HomePage {
         strokeWeight: 3
       });
       this.currentMapTrack.setMap(this.map);
-    }
+    } */
   }
 
   stopTracking() {
-    let newRoute = { finished: new Date().getTime(), path: this.trackedRoute };
+ /*    let newRoute = { finished: new Date().getTime(), path: this.trackedRoute };
     this.previousTracks.push(newRoute);
     this.storage.set('routes', this.previousTracks);
    
     this.isTracking = false;
     this.positionSubscription.unsubscribe();
-    this.currentMapTrack.setMap(null);
+    this.currentMapTrack.setMap(null); */
   }
    
   showHistoryRoute(route) {
-    this.redrawPath(route);
+   /*  this.redrawPath(route); */
   }
 
 

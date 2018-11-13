@@ -8,6 +8,7 @@ import { VentaTotal } from '../../models/ventaTotal.modelo';
 import { VentaDetalle } from '../../models/ventadetalle.modelo';
 import { Comision } from '../../models/comision.modelo';
 import { Storage } from '@ionic/storage';
+import { CreditoComprobar } from '../../models/credito.modelo';
 
 /*
   Generated class for the VentaProvider provider.
@@ -18,7 +19,7 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class VentaProvider {
   venta2: Venta = null;
-  url = 'http://gamercash.info:8081';
+  url = 'http://gamercash.info:8080';
 
   constructor(public http: HttpClient, public storage: Storage) {
     console.log('Hello VentaProvider Provider');
@@ -28,6 +29,15 @@ export class VentaProvider {
     return this.http.post(this.url+'/usuarios/'+venta.usuario_id+
     '/clientes/'+venta.cliente_id+'/ventatipos/'+venta.venta_tipo_id+'/ventas', venta);
    
+  }
+
+  nuevoCredito(credito, idC, idV)  : Observable<any> {
+    return this.http.post(this.url+'/clientes/'+idC+
+    '/ventas/'+idV+'/creditos', JSON.parse(credito));
+  }
+
+  verCreditoId(idC)  : Observable<Array<CreditoComprobar>> {
+    return this.http.get<Array<CreditoComprobar>>(this.url+'/clientes/'+idC+'/creditos');
   }
 
   venderDetalle(venta: VentaDetalle)  : Observable<any> {

@@ -18,7 +18,7 @@ import { Solicitud2 } from '../../models/solicitud-crear.modelo';
 @Injectable()
 export class UsuariosProvider {
 
-  url = "http://gamercash.info:8081";
+  url = "http://gamercash.info:8080";
 
   constructor(public http: HttpClient) {
     console.log('Hello UsuariosProvider Provider');
